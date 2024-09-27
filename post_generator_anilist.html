@@ -3,7 +3,8 @@
 <head>
   <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css"  rel="stylesheet" />
   <title>AniList API GUI</title>
-<style>textarea {scrollbar-width: thin}</style>
+  <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body class="p-8">
   <div id="input-container">
@@ -23,161 +24,10 @@
  </div>
 
 
-  <script>
-    // Get the input and button elements
-    const inputId = document.getElementById('input-id');
-    const buttonFetch = document.getElementById('button-fetch');
-    const outputJson = document.getElementById('output-json');
+<script src="js/anilistApi.js"></script>
+<script src="js/converter.js"></script>
+<script src="js/download.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
 
-    // Define the query and variables
-    const query = `
-      query ($id: Int) {
-        Media (id: $id, type: ANIME) {
-          id
-          title {
-            romaji
-            english
-            native
-          }
-          coverImage {
-            extraLarge
-            large
-            medium
-          }
-          genres
-          episodes
-          status
-          description
-        }
-      }
-    `;
-    const variables = {
-      id: null
-    };
-
-    // Define the API URL and options
-    const url = 'https://graphql.anilist.co';
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: null
-    };
-
-    // Add event listener to the button
-    buttonFetch.addEventListener('click', () => {
-      // Get the input ID value
-      const idValue = inputId.value.trim();
-
-      // Check if the input ID is valid
-      if (idValue === '') {
-        alert('Please enter a valid anime ID');
-        return;
-      }
-
-      // Set the variables and options
-      variables.id = parseInt(idValue);
-      options.body = JSON.stringify({
-        query: query,
-        variables: variables
-      });
-
-      // Make the API request
-      fetch(url, options)
-        .then(handleResponse)
-        .then(handleData)
-        .catch(handleError);
-    });
-
-    // Handle the API response
-    function handleResponse(response) {
-      return response.json().then(function (json) {
-        return response.ok ? json : Promise.reject(json);
-      });
-    }
-
-    // Handle the API data
-    function handleData(data) {
-      outputJson.value = JSON.stringify(data, null, 2);
-    }
-
-    // Handle any errors
-    function handleError(error) {
-      alert('Error, check console');
-      console.error(error);
-    }
-  </script>
-  
-  <script>
-    // Konversi JSON ke XML
-    document.getElementById("convert-button").addEventListener("click", function () {
-      const inputJson = document.getElementById("output-json").value;
-  
-      try {
-        const jsonData = JSON.parse(inputJson);
-        const englishTitle = jsonData.data.Media.title.english;
-        const genres = jsonData.data.Media.genres;
-        const genreCategories = genres.map(genre => `<category scheme='http://www.blogger.com/atom/ns#' term='${genre}'/>`).join('');
-  
-        const xmlTemplate = `
-          <?xml version='1.0' encoding='utf-8'?>
-          <feed xmlns='http://www.w3.org/2005/Atom' xmlns:openSearch='http://a9.com/-/spec/opensearchrss/1.0/' xmlns:gd='http://schemas.google.com/g/2005' xmlns:thr='http://purl.org/syndication/thread/1.0'>
-            <id>tag:blogger.com,1999:blog-8199026139722699732.archive</id>
-            <updated>2024-09-04T04:16:36.858-07:00</updated>
-            <title type='text'>MyBerkas</title>
-            <link rel='self' type='application/atom+xml' href='https://www.blogger.com/feeds/8199026139722699732/archive'/>
-            <author><name>Tulang Punggung</name></author>
-            <generator version='7.00' uri='https://www.blogger.com'>Blogger</generator>
-            
-            <entry>
-              <id>tag:blogger.com,1999:blog-8199026139722699732.post-1726797376610309691</id>
-              <published>2024-08-29T18:45:00.000-07:00</published>
-              <updated>2024-08-29T18:50:18.515-07:00</updated>
-              <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/blogger/2008/kind#post'/>
-              ${genreCategories}
-              <title type='text'>${englishTitle}</title>
-              <content type='html'></content>
-              <link rel='replies' type='application/atom+xml' href='https://folderku-sa.blogspot.com/feeds/1726797376610309691/comments/default' title='Post Comments'/>
-              <link rel='replies' type='text/html' href='https://folderku-sa.blogspot.com/2024/08/oshi-no-ko-2nd-season.html#comment-form' title='0 Comments'/>
-              <link rel='edit' type='application/atom+xml' href='https://www.blogger.com/feeds/8199026139722699732/posts/default/1726797376610309691'/>
-              <link rel='self' type='application/atom+xml' href='https://www.blogger.com/feeds/8199026139722699732/posts/default/1726797376610309691'/>
-              <link rel='alternate' type='text/html' href='https://folderku-sa.blogspot.com/2024/08/oshi-no-ko-2nd-season.html' title='"Oshi no Ko" 2nd Season'/>
-              <author>
-                <name>Tulang Punggung</name>
-                <uri>https://www.blogger.com/profile/00337368438897436583</uri>
-                <email>noreply@blogger.com</email>
-                <gd:image rel='http://schemas.google.com/g/2005#thumbnail' width='24' height='32' src='//blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhCith-_tHaABD8VAE8TNnbgErYqRGBBhF83Pga1UqWDYSzXjYq0lOSCvwju5qSbjrA-rgroAa6i0pACDUmw8MXFhCeik_fBgBPQLb4uuLBZj5Iwu6XThYL6ZQaZjpfXqfN5UjV4pEyYN4nCSIGGp_uKEPNYIm3wfwJeGvcVZTysb-2g6w/s220/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg'/>
-              </author>
-              <thr:total>0</thr:total>
-            </entry>
-          </feed>`;
-  
-        document.getElementById("output-xml").value = xmlTemplate;
-      } catch (error) {
-        alert("Error parsing JSON. Please check the format.");
-      }
-    });
-  
-    // Download XML
-    document.getElementById("download-xml").addEventListener("click", function () {
-      const xmlContent = document.getElementById("output-xml").value;
-  
-      // Buat blob dari konten XML
-      const blob = new Blob([xmlContent], { type: 'application/xml' });
-  
-      // Buat link download
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = "output.xml";  // Nama file yang akan diunduh
-      link.click();
-  
-      // Membersihkan object URL setelah selesai
-      URL.revokeObjectURL(link.href);
-    });
-  </script>
-  
-  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
 </body>
 </html>
