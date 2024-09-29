@@ -1,3 +1,8 @@
+// Fungsi untuk melakukan escaping karakter HTML
+function escapeHtml(html) {
+  return html.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
 // Konversi JSON ke XML
 document.getElementById("convert-button").addEventListener("click", function () {
   const inputJson = document.getElementById("output-json").value;
@@ -6,6 +11,12 @@ document.getElementById("convert-button").addEventListener("click", function () 
     const jsonData = JSON.parse(inputJson);
     const englishTitle = jsonData.data.Media.title.english;
     const genres = jsonData.data.Media.genres;
+    let description = jsonData.data.Media.description || 'No description available';
+    const coverImageExtraLarge = jsonData.data.Media.coverImage.extraLarge || 'https://default-url-to-image.jpg';
+
+    // Escape HTML tags in description
+    description = escapeHtml(description);
+
     const genreCategories = genres.map(genre => `<category scheme='http://www.blogger.com/atom/ns#' term='${genre}'/>`).join('');
 
     const xmlTemplate = `<?xml version='1.0' encoding='utf-8'?>
@@ -24,41 +35,80 @@ document.getElementById("convert-button").addEventListener("click", function () 
           <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/blogger/2008/kind#post'/>
           ${genreCategories}
           <title type='text'>${englishTitle}</title>
-          <content type='html'></content>
-          <link rel='replies' type='application/atom+xml' href='https://folderku-sa.blogspot.com/feeds/1726797376610309691/comments/default' title='Post Comments'/>
-          <link rel='replies' type='text/html' href='https://folderku-sa.blogspot.com/2024/08/oshi-no-ko-2nd-season.html#comment-form' title='0 Comments'/>
-          <link rel='edit' type='application/atom+xml' href='https://www.blogger.com/feeds/8199026139722699732/posts/default/1726797376610309691'/>
-          <link rel='self' type='application/atom+xml' href='https://www.blogger.com/feeds/8199026139722699732/posts/default/1726797376610309691'/>
-          <link rel='alternate' type='text/html' href='https://folderku-sa.blogspot.com/2024/08/oshi-no-ko-2nd-season.html' title='"Oshi no Ko" 2nd Season'/>
-          <author>
-            <name>Tulang Punggung</name>
-            <uri>https://www.blogger.com/profile/00337368438897436583</uri>
-            <email>noreply@blogger.com</email>
-            <gd:image rel='http://schemas.google.com/g/2005#thumbnail' width='24' height='32' src='//blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhCith-_tHaABD8VAE8TNnbgErYqRGBBhF83Pga1UqWDYSzXjYq0lOSCvwju5qSbjrA-rgroAa6i0pACDUmw8MXFhCeik_fBgBPQLb4uuLBZj5Iwu6XThYL6ZQaZjpfXqfN5UjV4pEyYN4nCSIGGp_uKEPNYIm3wfwJeGvcVZTysb-2g6w/s220/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg'/>
-          </author>
-          <thr:total>0</thr:total>
+          <content type='html'>
+          
+&lt;!--[ Synopsis ]--&gt;
+&lt;div id="synopsis"&gt;
+&lt;p&gt;
+${description}
+&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;span&gt;&lt;!--more--&gt;&lt;/span&gt;
+
+&lt;!--[ Thumbnail ]--&gt;
+&lt;div class="separator" style="clear: both;"&gt;&lt;a href="${coverImageExtraLarge}" style="display: block; padding: 1em 0; text-align: center; "&gt;&lt;img alt="" border="0" height="200" data-original-height="600" data-original-width="424" src="${coverImageExtraLarge}" /&gt;&lt;/a&gt;&lt;/div&gt;
+
+          </content>
         </entry>
       </feed>`;
 
     document.getElementById("output-xml").value = xmlTemplate;
+
+    // Enable the "Add Entry" button after successful conversion
+    document.getElementById("add-entry").disabled = false;
+
   } catch (error) {
     alert("Error parsing JSON. Please check the format.");
   }
 });
 
-// Download XML
-document.getElementById("download-xml").addEventListener("click", function () {
-  const xmlContent = document.getElementById("output-xml").value;
+// Fungsi untuk menambahkan <entry> baru ke XML
+document.getElementById("add-entry").addEventListener("click", function () {
+  const outputXml = document.getElementById("output-xml").value;
+  const inputJson = document.getElementById("output-json").value;
 
-  // Buat blob dari konten XML
-  const blob = new Blob([xmlContent], { type: 'application/xml' });
+  try {
+    const jsonData = JSON.parse(inputJson);
+    const englishTitle = jsonData.data.Media.title.english;
+    const genres = jsonData.data.Media.genres;
+    let description = jsonData.data.Media.description || 'No description available';
+    const coverImageExtraLarge = jsonData.data.Media.coverImage.extraLarge || 'https://default-url-to-image.jpg';
 
-  // Buat link download
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "output.xml";  // Nama file yang akan diunduh
-  link.click();
+    description = escapeHtml(description);
+    const genreCategories = genres.map(genre => `<category scheme='http://www.blogger.com/atom/ns#' term='${genre}'/>`).join('');
 
-  // Membersihkan object URL setelah selesai
-  URL.revokeObjectURL(link.href);
+    const newEntry = `<entry>
+          <id>tag:blogger.com,1999:blog-8199026139722699732.post-1726797376610309691</id>
+          <published>2024-08-29T18:45:00.000-07:00</published>
+          <updated>2024-08-29T18:50:18.515-07:00</updated>
+          <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/blogger/2008/kind#post'/>
+          ${genreCategories}
+          <title type='text'>${englishTitle}</title>
+          <content type='html'>
+          
+&lt;!--[ Synopsis ]--&gt;
+&lt;div id="synopsis"&gt;
+&lt;p&gt;
+${description}
+&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;span&gt;&lt;!--more--&gt;&lt;/span&gt;
+
+&lt;!--[ Thumbnail ]--&gt;
+&lt;div class="separator" style="clear: both;"&gt;&lt;a href="${coverImageExtraLarge}" style="display: block; padding: 1em 0; text-align: center; "&gt;&lt;img alt="" border="0" height="200" data-original-height="600" data-original-width="424" src="${coverImageExtraLarge}" /&gt;&lt;/a&gt;&lt;/div&gt;
+
+          </content>
+        </entry>`;
+
+    // Menambahkan <entry> baru ke akhir XML
+    const updatedXml = outputXml.replace('</feed>', `${newEntry}\n</feed>`);
+    document.getElementById("output-xml").value = updatedXml;
+
+  } catch (error) {
+    alert("Error parsing JSON for new entry.");
+  }
 });
