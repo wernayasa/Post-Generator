@@ -1,0 +1,417 @@
+<div class='h-full flex-col md:flex border border-neutral-200 dark:border-neutral-800 rounded-md'>
+   <div class='flex flex-col items-start justify-between border-b dark:border-neutral-800 space-y-2 px-2 md:px-6 py-1.5 md:py-4 sm:flex-row sm:items-center sm:space-y-0 md:h-16'>
+      <h2 class='max-sm:text-center text-lg font-semibold w-full'>Post Generator Anilist <span class='bg-lime-400 text-neutral-950 text-xs font-semibold ms-2 px-2.5 py-0.5 rounded-md'>v1.1.0</span></h2>
+      <div class='ml-auto flex w-full space-x-2 sm:justify-end'>
+         <button aria-controls='radix-:r0:' aria-expanded='false' aria-haspopup='dialog' aria-label='Load a preset...' class='inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-neutral-950 h-9 px-4 py-2 flex-1 justify-between md:max-w-[200px] lg:max-w-[300px]' data-state='closed' role='combobox' type='button'>
+            Load a preset...
+            <svg class='ml-2 h-4 w-4 shrink-0 opacity-50' fill='none' height='15' viewBox='0 0 15 15' width='15' xmlns='http://www.w3.org/2000/svg'>
+               <path clip-rule='evenodd' d='M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z' fill='currentColor' fill-rule='evenodd'/>
+            </svg>
+         </button>
+         <button aria-controls='radix-:r1:' aria-expanded='false' aria-haspopup='dialog' class='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-neutral-200 dark:bg-neutral-900 text-secondary-foreground shadow-sm hover:bg-neutral-200 dark:bg-neutral-900/80 h-9 px-4 py-2' data-state='closed' type='button'>Save</button>
+         <div class='hidden space-x-2 md:flex'><button aria-controls='radix-:r4:' aria-expanded='false' aria-haspopup='dialog' class='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-neutral-200 dark:bg-neutral-900 text-secondary-foreground shadow-sm hover:bg-neutral-200 dark:bg-neutral-900/80 h-9 px-4 py-2' data-state='closed' type='button'>View code</button><button aria-controls='radix-:r7:' aria-expanded='false' aria-haspopup='dialog' class='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-neutral-200 dark:bg-neutral-900 text-secondary-foreground shadow-sm hover:bg-neutral-200 dark:bg-neutral-900/80 h-9 px-4 py-2' data-state='closed' type='button'>Share</button></div>
+         <button aria-expanded='false' aria-haspopup='menu' class='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-neutral-200 dark:bg-neutral-900 text-secondary-foreground shadow-sm hover:bg-neutral-200 dark:bg-neutral-900/80 h-9 px-4 py-2' data-state='closed' id='radix-:r8:' type='button'>
+            <span class='sr-only'>Actions</span>
+            <svg class='h-4 w-4' fill='none' height='15' viewBox='0 0 15 15' width='15' xmlns='http://www.w3.org/2000/svg'>
+               <path clip-rule='evenodd' d='M3.625 7.5C3.625 8.12132 3.12132 8.625 2.5 8.625C1.87868 8.625 1.375 8.12132 1.375 7.5C1.375 6.87868 1.87868 6.375 2.5 6.375C3.12132 6.375 3.625 6.87868 3.625 7.5ZM8.625 7.5C8.625 8.12132 8.12132 8.625 7.5 8.625C6.87868 8.625 6.375 8.12132 6.375 7.5C6.375 6.87868 6.87868 6.375 7.5 6.375C8.12132 6.375 8.625 6.87868 8.625 7.5ZM12.5 8.625C13.1213 8.625 13.625 8.12132 13.625 7.5C13.625 6.87868 13.1213 6.375 12.5 6.375C11.8787 6.375 11.375 6.87868 11.375 7.5C11.375 8.12132 11.8787 8.625 12.5 8.625Z' fill='currentColor' fill-rule='evenodd'/>
+            </svg>
+         </button>
+      </div>
+   </div>
+
+   <div class='flex-1' data-orientation='horizontal' dir='ltr'>
+      <div class='h-full p-2 md:p-6'>
+         <div class='grid h-full items-stretch gap-6 md:grid-cols-[1fr_200px]'>
+            <div class='hidden flex-col space-y-4 sm:flex md:order-2'>
+               <div class='grid gap-2'>
+                  <span class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' data-state='closed'>Mode</span>
+                  <div aria-orientation='horizontal' class='h-9 items-center justify-center rounded-lg bg-muted p-1 dark:text-neutral-400 bg-neutral-200 dark:bg-neutral-900 grid grid-cols-2' data-orientation='horizontal' role='tablist' style='outline: none;' tabindex='0'>
+                     <button aria-controls='radix-:rg:-content-complete' aria-selected='false' class='anime active inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow' data-orientation='horizontal' data-radix-collection-item='' data-state='inactive' id='radix-:rg:-trigger-complete' role='tab' tabindex='-1' type='button'>
+                        <svg class='h-5 w-5' fill='none' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
+                           <rect fill='currentColor' height='2' rx='1' width='12' x='4' y='3'/>
+                           <rect fill='currentColor' height='2' rx='1' width='12' x='4' y='7'/>
+                           <rect fill='currentColor' height='2' rx='1' width='3' x='4' y='11'/>
+                           <rect fill='currentColor' height='2' rx='1' width='3' x='4' y='15'/>
+                           <rect fill='currentColor' height='2' rx='1' width='3' x='8.5' y='11'/>
+                           <rect fill='currentColor' height='2' rx='1' width='3' x='8.5' y='15'/>
+                           <rect fill='currentColor' height='2' rx='1' width='3' x='13' y='11'/>
+                        </svg><span>Anime</span>
+                     </button>
+                     <button aria-controls='radix-:rg:-content-insert' aria-selected='true' class='manga inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50' data-orientation='horizontal' data-radix-collection-item='' data-state='active' id='radix-:rg:-trigger-insert' role='tab' tabindex='0' type='button'><svg class='h-5 w-5' fill='none' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
+                           <path clip-rule='evenodd' d='M14.491 7.769a.888.888 0 0 1 .287.648.888.888 0 0 1-.287.648l-3.916 3.667a1.013 1.013 0 0 1-.692.268c-.26 0-.509-.097-.692-.268L5.275 9.065A.886.886 0 0 1 5 8.42a.889.889 0 0 1 .287-.64c.181-.17.427-.267.683-.269.257-.002.504.09.69.258L8.903 9.87V3.917c0-.243.103-.477.287-.649.183-.171.432-.268.692-.268.26 0 .509.097.692.268a.888.888 0 0 1 .287.649V9.87l2.245-2.102c.183-.172.432-.269.692-.269.26 0 .508.097.692.269Z' fill='currentColor' fill-rule='evenodd'/>
+                           <rect fill='currentColor' height='2' rx='1' width='3' x='4' y='15'/>
+                           <rect fill='currentColor' height='2' rx='1' width='3' x='8.5' y='15'/>
+                           <rect fill='currentColor' height='2' rx='1' width='3' x='13' y='15'/>
+                        </svg><span>Manga</span>
+                     </button>
+                  </div>
+               </div>
+               <div class='grid gap-2'>
+                  <label class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' data-state='closed' for='model'>Model</label>
+                  <button aria-controls='radix-:rk:' aria-expanded='false' aria-haspopup='dialog' aria-label='Select a model' class='inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-neutral-950 h-9 px-4 py-2 w-full justify-between' data-state='closed' role='combobox' type='button'>
+                     text-davinci-003
+                     <svg class='ml-2 h-4 w-4 shrink-0 opacity-50' fill='none' height='15' viewBox='0 0 15 15' width='15' xmlns='http://www.w3.org/2000/svg'>
+                        <path clip-rule='evenodd' d='M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z' fill='currentColor' fill-rule='evenodd'/>
+                     </svg>
+                  </button>
+               </div>
+               <div class='grid gap-2 pt-2'>
+                  <div class='grid gap-4' data-state='closed'>
+                     <div class='flex items-center justify-between'><label class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' for='temperature'>Temperature</label><span class='w-12 rounded-md border border-transparent px-2 py-0.5 text-right text-sm text-muted-foreground hover:border-border'>0.56</span></div>
+                     <span aria-disabled='false' aria-label='Temperature' class='relative flex w-full touch-none select-none items-center [&amp;_[role=slider]]:h-4 [&amp;_[role=slider]]:w-4' data-orientation='horizontal' dir='ltr' id='temperature' style='--radix-slider-thumb-transform: translateX(-50%);'><span class='relative h-1.5 w-full grow overflow-hidden rounded-full bg-primary/20' data-orientation='horizontal'><span class='absolute h-full bg-primary' data-orientation='horizontal' style='left: 0%; right: 44%;'/></span><span style='transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(56% - 0.96px);'><span aria-orientation='horizontal' aria-valuemax='1' aria-valuemin='0' aria-valuenow='0.56' class='block h-4 w-4 rounded-full border border-primary/50 bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50' data-orientation='horizontal' data-radix-collection-item='' role='slider' style='' tabindex='0'/></span></span>
+                  </div>
+               </div>
+               <div class='grid gap-2 pt-2'>
+                  <div class='grid gap-4' data-state='closed'>
+                     <div class='flex items-center justify-between'><label class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' for='maxlength'>Maximum Length</label><span class='w-12 rounded-md border border-transparent px-2 py-0.5 text-right text-sm text-muted-foreground hover:border-border'>256</span></div>
+                     <span aria-disabled='false' aria-label='Maximum Length' class='relative flex w-full touch-none select-none items-center [&amp;_[role=slider]]:h-4 [&amp;_[role=slider]]:w-4' data-orientation='horizontal' dir='ltr' id='maxlength' style='--radix-slider-thumb-transform: translateX(-50%);'><span class='relative h-1.5 w-full grow overflow-hidden rounded-full bg-primary/20' data-orientation='horizontal'><span class='absolute h-full bg-primary' data-orientation='horizontal' style='left: 0%; right: 93.6%;'/></span><span style='transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(6.4% + 6.976px);'><span aria-orientation='horizontal' aria-valuemax='4000' aria-valuemin='0' aria-valuenow='256' class='block h-4 w-4 rounded-full border border-primary/50 bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50' data-orientation='horizontal' data-radix-collection-item='' role='slider' style='' tabindex='0'/></span></span>
+                  </div>
+               </div>
+               <div class='grid gap-2 pt-2'>
+                  <div class='grid gap-4' data-state='closed'>
+                     <div class='flex items-center justify-between'><label class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70' for='top-p'>Top P</label><span class='w-12 rounded-md border border-transparent px-2 py-0.5 text-right text-sm text-muted-foreground hover:border-border'>0.9</span></div>
+                     <span aria-disabled='false' aria-label='Top P' class='relative flex w-full touch-none select-none items-center [&amp;_[role=slider]]:h-4 [&amp;_[role=slider]]:w-4' data-orientation='horizontal' dir='ltr' id='top-p' style='--radix-slider-thumb-transform: translateX(-50%);'><span class='relative h-1.5 w-full grow overflow-hidden rounded-full bg-primary/20' data-orientation='horizontal'><span class='absolute h-full bg-primary' data-orientation='horizontal' style='left: 0%; right: 10%;'/></span><span style='transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(90% - 6.4px);'><span aria-orientation='horizontal' aria-valuemax='1' aria-valuemin='0' aria-valuenow='0.9' class='block h-4 w-4 rounded-full border border-primary/50 bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50' data-orientation='horizontal' data-radix-collection-item='' role='slider' style='' tabindex='0'/></span></span>
+                  </div>
+               </div>
+            </div>
+            <div class='md:order-1'>
+
+               <div aria-labelledby='radix-:rg:-trigger-insert' class='ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 mt-0 border-0 p-0' data-orientation='horizontal' data-state='active' id='radix-:rg:-content-insert' role='tabpanel' tabindex='0'>
+                  <div class='flex flex-col space-y-4'>
+                     <div class='grid h-full grid-rows-2 gap-6 xl:grid-cols-2 xl:grid-rows-1'>
+                       <div class='grid gap-5'>
+                        <textarea class='flex w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 h-auto min-h-[300px] lg:min-h-[700px] xl:min-h-[700px]' id='output-json' placeholder='JSON Preview'></textarea>
+                         
+                         <input class='flex h-10 w-full rounded-md border border-input bg-neutral-100 dark:bg-neutral-950 px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50' id='input-id' placeholder='Enter Anime ID' type='number'/>
+                         
+                         <div class='flex items-center space-x-2'>
+                        <button class='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-neutral-950 dark:bg-neutral-100 text-neutral-100 dark:text-neutral-950 shadow h-9 px-4 py-2' id='button-fetch'>Fetch Data</button>
+                        <button class='inline-flex gap-1 items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-neutral-200 dark:bg-neutral-900 text-secondary-foreground shadow-sm hover:bg-neutral-200 dark:bg-neutral-900/80 h-9 px-4 py-2' disabled='' id='add-entry'>
+                          <svg class='h-4 w-4' fill='none' height='15' viewBox='0 0 15 15' width='15' xmlns='http://www.w3.org/2000/svg'><path clip-rule='evenodd' d='M2 3.5C2 3.22386 2.22386 3 2.5 3H12.5C12.7761 3 13 3.22386 13 3.5V9.5C13 9.77614 12.7761 10 12.5 10H2.5C2.22386 10 2 9.77614 2 9.5V3.5ZM2 10.9146C1.4174 10.7087 1 10.1531 1 9.5V3.5C1 2.67157 1.67157 2 2.5 2H12.5C13.3284 2 14 2.67157 14 3.5V9.5C14 10.1531 13.5826 10.7087 13 10.9146V11.5C13 12.3284 12.3284 13 11.5 13H3.5C2.67157 13 2 12.3284 2 11.5V10.9146ZM12 11V11.5C12 11.7761 11.7761 12 11.5 12H3.5C3.22386 12 3 11.7761 3 11.5V11H12ZM5 6.5C5 6.22386 5.22386 6 5.5 6H7V4.5C7 4.22386 7.22386 4 7.5 4C7.77614 4 8 4.22386 8 4.5V6H9.5C9.77614 6 10 6.22386 10 6.5C10 6.77614 9.77614 7 9.5 7H8V8.5C8 8.77614 7.77614 9 7.5 9C7.22386 9 7 8.77614 7 8.5V7H5.5C5.22386 7 5 6.77614 5 6.5Z' fill='currentColor' fill-rule='evenodd'/></svg>
+                           <span>Add Entry</span>
+                        </button>
+                     </div>
+                       </div>
+                       <div class='grid gap-5'>
+                        <textarea class='flex w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 h-auto min-h-[300px] lg:min-h-[700px] xl:min-h-[700px]' id='output-xml' placeholder='You can edit the code before downloading'></textarea>
+                         
+                         <div class='flex items-center space-x-2'>
+                        <button class='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-neutral-950 dark:bg-neutral-100 text-neutral-100 dark:text-neutral-950 shadow h-9 px-4 py-2' id='convert-button'>Convert</button>
+                        <button class='inline-flex gap-1 items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-neutral-200 dark:bg-neutral-900 text-secondary-foreground shadow-sm hover:bg-neutral-200 dark:bg-neutral-900/80 h-9 px-4 py-2' id='download-xml'>
+                          <svg class='h-4 w-4' fill='none' height='15' viewBox='0 0 15 15' width='15' xmlns='http://www.w3.org/2000/svg'><path clip-rule='evenodd' d='M7.50005 1.04999C7.74858 1.04999 7.95005 1.25146 7.95005 1.49999V8.41359L10.1819 6.18179C10.3576 6.00605 10.6425 6.00605 10.8182 6.18179C10.994 6.35753 10.994 6.64245 10.8182 6.81819L7.81825 9.81819C7.64251 9.99392 7.35759 9.99392 7.18185 9.81819L4.18185 6.81819C4.00611 6.64245 4.00611 6.35753 4.18185 6.18179C4.35759 6.00605 4.64251 6.00605 4.81825 6.18179L7.05005 8.41359V1.49999C7.05005 1.25146 7.25152 1.04999 7.50005 1.04999ZM2.5 10C2.77614 10 3 10.2239 3 10.5V12C3 12.5539 3.44565 13 3.99635 13H11.0012C11.5529 13 12 12.5528 12 12V10.5C12 10.2239 12.2239 10 12.5 10C12.7761 10 13 10.2239 13 10.5V12C13 13.1041 12.1062 14 11.0012 14H3.99635C2.89019 14 2 13.103 2 12V10.5C2 10.2239 2.22386 10 2.5 10Z' fill='currentColor' fill-rule='evenodd'/></svg>
+                           <span>Download</span>
+                        </button>
+                     </div>
+                       </div>
+                     </div>
+                     
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<script>/*<![CDATA[*/
+
+// Get the input and button elements
+const inputId = document.getElementById('input-id');
+const buttonFetch = document.getElementById('button-fetch');
+const outputJson = document.getElementById('output-json');
+
+// Default to Anime
+let mediaType = 'ANIME'; // Can be 'ANIME' or 'MANGA'
+
+// Set the active class on the buttons
+const animeButton = document.querySelector('.anime');
+const mangaButton = document.querySelector('.manga');
+
+// Add event listeners to the buttons
+animeButton.addEventListener('click', () => {
+  mediaType = 'ANIME';
+  animeButton.classList.add('active');
+  mangaButton.classList.remove('active');
+});
+
+mangaButton.addEventListener('click', () => {
+  mediaType = 'MANGA';
+  mangaButton.classList.add('active');
+  animeButton.classList.remove('active');
+});
+
+// Define the query and variables
+let query = `
+  query ($id: Int) {
+    Media (id: $id, type: ANIME) {
+      id
+      title {
+        romaji
+        english
+        native
+      }
+      coverImage {
+        extraLarge
+        large
+        medium
+      }
+      genres
+      episodes
+      status
+      description
+    }
+  }
+`;
+
+const variables = {
+  id: null
+};
+
+// Define the API URL and options
+const url = 'https://graphql.anilist.co';
+const options = {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
+  body: null
+};
+
+// Add event listener to the button
+buttonFetch.addEventListener('click', () => {
+  // Get the input ID value
+  const idValue = inputId.value.trim();
+
+  // Check if the input ID is valid
+  if (idValue === '') {
+    alert('Please enter a valid ID');
+    return;
+  }
+
+  // Update the query with the current media type
+  query = `
+    query ($id: Int) {
+      Media (id: $id, type: ${mediaType}) {
+        id
+        title {
+          romaji
+          english
+          native
+        }
+        coverImage {
+          extraLarge
+          large
+          medium
+        }
+        genres
+        episodes
+        status
+        description
+      }
+    }
+  `;
+
+  // Set the variables and options
+  variables.id = parseInt(idValue);
+  options.body = JSON.stringify({
+    query: query,
+    variables: variables
+  });
+
+  // Make the API request
+  fetch(url, options)
+    .then(handleResponse)
+    .then(handleData)
+    .catch(handleError);
+});
+
+// Handle the API response
+function handleResponse(response) {
+  return response.json().then(function (json) {
+    return response.ok ? json : Promise.reject(json);
+  });
+}
+
+// Handle the API data
+function handleData(data) {
+  outputJson.value = JSON.stringify(data, null, 2);
+}
+
+// Handle any errors
+function handleError(error) {
+  alert('Error, check console');
+  console.error(error);
+}
+
+
+
+// Download XML
+document.getElementById("download-xml").addEventListener("click", function () {
+    const xmlContent = document.getElementById("output-xml").value;
+  
+    // Buat blob dari konten XML
+    const blob = new Blob([xmlContent], { type: 'application/xml' });
+  
+    // Buat link download
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "output.xml";  // Nama file yang akan diunduh
+    link.click();
+  
+    // Membersihkan object URL setelah selesai
+    URL.revokeObjectURL(link.href);
+  });
+
+// Fungsi untuk mendapatkan tanggal saat ini dalam format ISO dengan timezone offset
+function getCurrentDateTime() {
+  const now = new Date();
+
+  // Ambil komponen-komponen dari waktu
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0'); // Bulan dimulai dari 0
+  const day = String(now.getDate()).padStart(2, '0');
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+
+  // Format milidetik dan zona waktu
+  const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
+
+  // Offset zona waktu dalam format ±HH:MM
+  const timezoneOffsetMinutes = now.getTimezoneOffset();
+  const offsetHours = String(Math.abs(Math.floor(timezoneOffsetMinutes / 60))).padStart(2, '0');
+  const offsetMinutes = String(Math.abs(timezoneOffsetMinutes % 60)).padStart(2, '0');
+  const timezoneOffset = (timezoneOffsetMinutes > 0 ? '-' : '+') + offsetHours + ':' + offsetMinutes;
+
+  // Gabungkan semua bagian untuk membentuk tanggal dalam format yang diinginkan
+  const formattedDateTime = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}${timezoneOffset}`;
+
+  return {
+    published: formattedDateTime, // Output sesuai format
+    updated: formattedDateTime
+  };
+}
+
+
+  // Fungsi untuk melakukan escaping karakter HTML
+  function escapeHtml(html) {
+    return html.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  // Konversi JSON ke XML
+  document.getElementById("convert-button").addEventListener("click", function () {
+    const inputJson = document.getElementById("output-json").value;
+
+    try {
+      const jsonData = JSON.parse(inputJson);
+      const englishTitle = jsonData.data.Media.title.english;
+      const genres = jsonData.data.Media.genres;
+      let description = jsonData.data.Media.description || 'No description available';
+      const coverImageExtraLarge = jsonData.data.Media.coverImage.extraLarge || 'https://default-url-to-image.jpg';
+
+      // Escape HTML tags in description
+      description = escapeHtml(description);
+
+      const genreCategories = genres.map(genre => `<category scheme='http://www.blogger.com/atom/ns#' term='${genre}'/>`).join('');
+
+      // Mendapatkan tanggal saat ini
+      const currentDateTime = getCurrentDateTime();
+
+      const xmlTemplate = `<?xml version='1.0' encoding='utf-8'?>
+      <feed xmlns='http://www.w3.org/2005/Atom' xmlns:openSearch='http://a9.com/-/spec/opensearchrss/1.0/' xmlns:gd='http://schemas.google.com/g/2005' xmlns:thr='http://purl.org/syndication/thread/1.0'>
+        <id>tag:blogger.com,1999:blog-8199026139722699732.archive</id>
+        <updated>${currentDateTime.updated}</updated>
+        <title type='text'>MyBerkas</title>
+        <link rel='self' type='application/atom+xml' href='https://www.blogger.com/feeds/8199026139722699732/archive'/>
+        <author><name>Tulang Punggung</name></author>
+        <generator version='7.00' uri='https://www.blogger.com'>Blogger</generator>
+          
+          <entry>
+            <id>tag:blogger.com,1999:blog-8199026139722699732.post-1726797376610309691</id>
+            <published>${currentDateTime.published}</published>
+            <updated>${currentDateTime.updated}</updated>
+            <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/blogger/2008/kind#post'/>
+            ${genreCategories}
+            <title type='text'>${englishTitle}</title>
+            <content type='html'>
+            
+&lt;!--[ Synopsis ]--&gt;
+&lt;div id="synopsis"&gt;
+&lt;p&gt;
+${description}
+&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;span&gt;&lt;!--more--&gt;&lt;/span&gt;
+
+&lt;!--[ Thumbnail ]--&gt;
+&lt;div class="separator" style="clear: both;"&gt;&lt;a href="${coverImageExtraLarge}" style="display: block; padding: 1em 0; text-align: center; "&gt;&lt;img alt="" border="0" height="200" data-original-height="600" data-original-width="424" src="${coverImageExtraLarge}" /&gt;&lt;/a&gt;&lt;/div&gt;
+
+            </content>
+          </entry>
+        </feed>`;
+
+      document.getElementById("output-xml").value = xmlTemplate;
+
+      // Enable the "Add Entry" button after successful conversion
+      document.getElementById("add-entry").disabled = false;
+
+    } catch (error) {
+      alert("Error parsing JSON. Please check the format.");
+    }
+  });
+
+  // Fungsi untuk menambahkan <entry> baru ke XML
+  document.getElementById("add-entry").addEventListener("click", function () {
+    const outputXml = document.getElementById("output-xml").value;
+    const inputJson = document.getElementById("output-json").value;
+
+    try {
+      const jsonData = JSON.parse(inputJson);
+      const englishTitle = jsonData.data.Media.title.english;
+      const genres = jsonData.data.Media.genres;
+      let description = jsonData.data.Media.description || 'No description available';
+      const coverImageExtraLarge = jsonData.data.Media.coverImage.extraLarge || 'https://default-url-to-image.jpg';
+
+      description = escapeHtml(description);
+      const genreCategories = genres.map(genre => `<category scheme='http://www.blogger.com/atom/ns#' term='${genre}'/>`).join('');
+
+      const newEntry = `<entry>
+            <id>tag:blogger.com,1999:blog-8199026139722699732.post-1726797376610309691</id>
+            <published>${getCurrentDateTime().published}</published>
+            <updated>${getCurrentDateTime().updated}</updated>
+            <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/blogger/2008/kind#post'/>
+            ${genreCategories}
+            <title type='text'>${englishTitle}</title>
+            <content type='html'>
+            
+&lt;!--[ Synopsis ]--&gt;
+&lt;div id="synopsis"&gt;
+&lt;p&gt;
+${description}
+&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;span&gt;&lt;!--more--&gt;&lt;/span&gt;
+
+&lt;!--[ Thumbnail ]--&gt;
+&lt;div class="separator" style="clear: both;"&gt;&lt;a href="${coverImageExtraLarge}" style="display: block; padding: 1em 0; text-align: center; "&gt;&lt;img alt="" border="0" height="200" data-original-height="600" data-original-width="424" src="${coverImageExtraLarge}" /&gt;&lt;/a&gt;&lt;/div&gt;
+
+            </content>
+          </entry>`;
+
+      // Menambahkan <entry> baru ke akhir XML
+      const updatedXml = outputXml.replace('</feed>', `${newEntry}\n</feed>`);
+      document.getElementById("output-xml").value = updatedXml;
+
+    } catch (error) {
+      alert("Error parsing JSON for new entry.");
+    }
+  });
+
+
+/*]]>*/</script>
